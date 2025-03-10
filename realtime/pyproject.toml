@@ -1,0 +1,25 @@
+[build-system]
+requires = ["maturin>=1.4,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "deep-filter-rt"
+version = "0.5.7.dev0"
+description = "Real-time noise suppression using DeepFilterNet"
+authors = [
+    {name = "Hendrik Schröter"}
+]
+requires-python = ">=3.8"
+license = {text = "MIT/Apache-2.0"}
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+[tool.maturin]
+features = ["default"]
+module-name = "deep_filter_rt" 

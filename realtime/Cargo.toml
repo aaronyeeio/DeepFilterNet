@@ -1,0 +1,24 @@
+[package]
+name = "deep-filter-rt"
+version = "0.5.7-pre"
+authors = ["Hendrik Schröter"]
+edition = "2021"
+license = "MIT/Apache-2.0"
+
+[lib]
+name = "deep_filter_rt"
+crate-type = ["cdylib"]
+
+[features]
+default-model-ll = ["deep_filter/default-model-ll"]
+default = ["default-model-ll"]
+
+[dependencies]
+deep_filter = { path = "../libDF", default-features = false, features = [
+  "tract",
+  "use-jemalloc",
+  "default-model",
+] }
+ndarray = "^0.15"
+pyo3 = { version = "0.20", features = ["extension-module"] }
+numpy = "0.20"
