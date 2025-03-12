@@ -4,7 +4,7 @@ from deep_filter_rt import RealtimeDf
 
 def main():
     # Create a stereo (2 channel) instance
-    df = RealtimeDf(channels=2)
+    df = RealtimeDf(channels=2, atten_lim=100.)
     
     # Create some dummy input data
     # Shape must be (channels, hop_size)

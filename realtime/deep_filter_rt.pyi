@@ -9,12 +9,13 @@ class RealtimeDf:
     noise suppression algorithm.
     """
     
-    def __init__(self, channels: int) -> None:
+    def __init__(self, channels: int, atten_lim: float) -> None:
         """Initialize a new RealtimeDf instance.
         
         Args:
             channels: Number of audio channels (1 for mono, 2 for stereo)
-        
+            atten_lim: Attenuation limit in dB (0-100)
+
         Raises:
             RuntimeError: If initialization fails
         """

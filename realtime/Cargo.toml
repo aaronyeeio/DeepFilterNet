@@ -10,8 +10,8 @@ name = "deep_filter_rt"
 crate-type = ["cdylib"]
 
 [features]
-default-model-ll = ["deep_filter/default-model-ll"]
-default = ["default-model-ll"]
+default-model = ["deep_filter/default-model"]
+default = ["default-model"]
 
 [dependencies]
 deep_filter = { path = "../libDF", default-features = false, features = [

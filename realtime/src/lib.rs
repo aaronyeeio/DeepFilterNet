@@ -13,10 +13,18 @@ pub struct RealtimeDf {
 }
 
 impl RealtimeDf {
-    pub fn new(channels: usize) -> Result<Self, Box<dyn std::error::Error>> {
+    pub fn new(channels: usize, atten_lim: f32) -> Result<Self, Box<dyn std::error::Error>> {
         let df_params = DfParams::default();
         let r_params = RuntimeParams::default_with_ch(channels);
-        let model = DfTract::new(df_params, &r_params)?;
+        let mut model = DfTract::new(df_params, &r_params)?;
+        if atten_lim > 0. && atten_lim <= 100. {
+            model.set_atten_lim(atten_lim);
+        } else {
+            return Err(Box::new(std::io::Error::new(
+                std::io::ErrorKind::InvalidInput,
+                "Attenuation limit must be between 0 and 100",
+            )));
+        }
 
         let sample_rate = model.sr;
         let hop_size = model.hop_size;
@@ -65,7 +73,7 @@ impl RealtimeDf {
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Example usage
-    let mut df = RealtimeDf::new(2)?; // Stereo
+    let mut df = RealtimeDf::new(2, 100.)?; // Stereo
 
     // Create dummy input data
     let input = Array2::zeros((2, df.get_hop_size()));

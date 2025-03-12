@@ -12,8 +12,8 @@ pub struct PyRealtimeDf {
 #[pymethods]
 impl PyRealtimeDf {
     #[new]
-    fn new(channels: usize) -> PyResult<Self> {
-        let inner = RealtimeDf::new(channels).map_err(|e| {
+    fn new(channels: usize, atten_lim: f32) -> PyResult<Self> {
+        let inner = RealtimeDf::new(channels, atten_lim).map_err(|e| {
             PyErr::new::<pyo3::exceptions::PyRuntimeError, _>(format!(
                 "Failed to create RealtimeDf: {}",
                 e
